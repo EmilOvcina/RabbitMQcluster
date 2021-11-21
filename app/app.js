@@ -35,7 +35,7 @@ app.post("/:event/:string", (req, res) => {
 
 
 app.get("/", (req, res) => {
-    res.send(JSON.stringify({test :"works!"}));
+    res.send(JSON.stringify({test :"works again!"}));
 })
 
 app.listen(3000);
