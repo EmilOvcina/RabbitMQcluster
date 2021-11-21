@@ -4,8 +4,8 @@ metadata:
   name: rabbitmq-publisher
 type: Opaque
 data:
-  RABBIT_USERNAME: dGVzdA==
-  RABBIT_PASSWORD: dGVzdA==
+  RABBIT_USERNAME: Z3Vlc3Q=
+  RABBIT_PASSWORD: Z3Vlc3Q=
 ---
 apiVersion: apps/v1
 kind: Deployment
