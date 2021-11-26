@@ -11,6 +11,7 @@ kubectl -n rabbits apply -f https://raw.githubusercontent.com/EmilOvcina/RabbitM
 kubectl -n rabbits apply -f https://raw.githubusercontent.com/EmilOvcina/RabbitMQcluster/main/rabbit-statefulset.yaml
 ```
 
+Test gateway ./app/:
 ```bash
 kubectl -n rabbits apply -f https://raw.githubusercontent.com/EmilOvcina/RabbitMQcluster/main/app/deployment.yaml
 ```
