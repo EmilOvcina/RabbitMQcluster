@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: rabbitmq
+  labels:
+    app: rabbitmq
 spec:
   serviceName: rabbitmq
   replicas: 2
@@ -28,12 +30,15 @@ spec:
           mountPath: /etc/rabbitmq/
       containers:
       - name: rabbitmq
-        image: rabbitmq:3.8-management
+        image: rabbitmq:3.8
         ports:
         - containerPort: 4369
           name: discovery
         - containerPort: 5672
           name: amqp
+        - containerPort: 15692
+          protocol: TCP
+          name: metrics
         env:
         - name: RABBIT_POD_NAME
           valueFrom:
@@ -88,6 +93,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: rabbitmq
+  labels:
+    app: rabbitmq
 spec:
   clusterIP: None
   ports:
@@ -97,5 +104,9 @@ spec:
   - port: 5672
     targetPort: 5672
     name: amqp
+  - port: 15692
+    targetPort: metrics
+    name: metrics
+    protocol: TCP
   selector:
     app: rabbitmq
