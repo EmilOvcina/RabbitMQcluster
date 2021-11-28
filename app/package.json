@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ovcina/rapidriver": "^2.0.4",
+    "@ovcina/rapidriver": "latest",
     "express": "^4.17.1"
   }
 }
