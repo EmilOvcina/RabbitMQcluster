@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-test
+  labels:
+    app: mongodb-test
+spec:
+  selector:
+    matchLabels:
+      app: mongodb-test
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongodb-test
+    spec:
+      containers:
+      - name: mongodb-test
+        image: emovc18/mongotest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MYSQL_HOST 
+          value: "mysql.default.svc.cluster.local"
+        - name: MYSQL_USER
+          value: "root"
+        - name: MYSQL_PASS
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secrets
+              key: mysql-root-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-test
+  labels:
+    app: mongodb-test
+spec:
+  type: LoadBalancer
+  selector:
+    app: mongodb-test
+  ports:
+    - protocol: TCP
+      name: http
+      port: 80
+      targetPort: 3000
