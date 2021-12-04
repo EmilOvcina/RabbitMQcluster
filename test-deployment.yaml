@@ -38,7 +38,7 @@ metadata:
   labels:
     app: mongodb-test
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: mongodb-test
   ports:
